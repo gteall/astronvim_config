@@ -9,4 +9,20 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    opts = { style = "moon" },
+  },
+
+  {
+    "Mofiqul/dracula.nvim",
+    lazy = false,
+  },
+
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+  },
 }

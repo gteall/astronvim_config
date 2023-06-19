@@ -22,11 +22,17 @@ return {
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
     ["<S-h>"] = {function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer"},
-    ["<S-l>"] = {
-      function() 
-        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) 
-      end, 
-      desc = "Next buffer"},
+    ["<S-l>"] = {function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer"},
+
+    -- ["<S-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" },
+    -- ["<S-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" },
+    -- ["<S-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" },
+    -- ["<S-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" },
+
+    ["<S-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" },
+    ["<S-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" },
+    ["<S-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
+    ["<S-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
   },
   t = {
     -- setting a mapping to false will disable it
