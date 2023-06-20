@@ -12,6 +12,7 @@ return {
     listchars = {space = '.', tab = '>~'}, -- 配置隐藏字符的显示方式
     tabstop = 4,
     fencs = "utf-8,gb2312,gbk",
+    cmdheight = 0,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

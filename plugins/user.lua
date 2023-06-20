@@ -25,4 +25,11 @@ return {
     "navarasu/onedark.nvim",
     lazy = true,
   },
+
+  {
+    "hrsh7th/nvim-cmp",
+    mapping = {
+      ["<C-o>"] = require("cmp").mapping(require("cmp").mapping.complete(), { "i", "c" }),
+    },
+  },
 }
