@@ -5,11 +5,13 @@ return {
     relativenumber = true, -- sets vim.opt.relativenumber
     number = true, -- sets vim.opt.number
     spell = false, -- sets vim.opt.spell
-    signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+    signcolumn = "yes", --auto", -- sets vim.opt.signcolumn to auto
     wrap = false, -- sets vim.opt.wrap
-    smartindent = false,
-    list = true,
-    listchars = {space = '.', tab = '>~'},
+    smartindent = true,
+    list = true, -- 显示隐藏字符
+    listchars = {space = '.', tab = '>~'}, -- 配置隐藏字符的显示方式
+    tabstop = 4,
+    fencs = "utf-8,gb2312,gbk",
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

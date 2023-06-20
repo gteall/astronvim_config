@@ -12,17 +12,17 @@ return {
 
   {
     "folke/tokyonight.nvim",
-    lazy = false,
+    lazy = true,
     opts = { style = "moon" },
   },
 
   {
     "Mofiqul/dracula.nvim",
-    lazy = false,
+    lazy = true,
   },
 
   {
     "navarasu/onedark.nvim",
-    lazy = false,
+    lazy = true,
   },
 }
