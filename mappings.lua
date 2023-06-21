@@ -33,6 +33,16 @@ return {
     ["<S-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" },
     ["<S-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
     ["<S-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
+
+    ["<C-d>"] = {"15j"},
+    ["<C-u>"] = {"15k"},
+
+    ["<A-j>"] = { "<cmd>m .+1<cr>==", desc = "Move down"},
+    ["<A-k>"] = { "<cmd>m .-2<cr>==", desc = "Move up"},
+
+    -- for mac, option + j and k
+    ["∆"] = { "<cmd>m .+1<cr>==", desc = "Move down"},
+    ["˚"] = { "<cmd>m .-2<cr>==", desc = "Move up"},
   },
   t = {
     -- setting a mapping to false will disable it
@@ -41,5 +51,12 @@ return {
   v = {
     [">"] = {">gv"},
     ["<"] = {"<gv"},
+
+    ["<A-j>"] = { ":m '>+1<cr>gv=gv", desc = "Move down"},
+    ["<A-k>"] = { ":m '<-2<cr>gv=gv", desc = "Move up"},
+
+    -- for mac, option + j and k
+    ["∆"] = { ":m '>+1<cr>gv=gv", desc = "Move down"},
+    ["˚"] = { ":m '<-2<cr>gv=gv", desc = "Move up"},
   },
 }
