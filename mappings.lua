@@ -43,6 +43,12 @@ return {
     -- for mac, option + j and k
     ["∆"] = { "<cmd>m .+1<cr>==", desc = "Move down"},
     ["˚"] = { "<cmd>m .-2<cr>==", desc = "Move up"},
+
+    ["<leader>f/"] = { function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "current buffer fuzzy find" },
+    ["<C-/>"] = { function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "current buffer fuzzy find" },
+
+    ["<leader>sn"] = { "+noice" },
+
   },
   t = {
     -- setting a mapping to false will disable it
