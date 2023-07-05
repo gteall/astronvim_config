@@ -19,7 +19,7 @@ return {
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
     ["<S-h>"] = {function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer"},
     ["<S-l>"] = {function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer"},
@@ -64,5 +64,8 @@ return {
     -- for mac, option + j and k
     ["∆"] = { ":m '>+1<cr>gv=gv", desc = "Move down"},
     ["˚"] = { ":m '<-2<cr>gv=gv", desc = "Move up"},
+  },
+  i = {
+    ["<C-s>"] = { "<cmd>w<cr><esc>", desc = "Save File" },
   },
 }

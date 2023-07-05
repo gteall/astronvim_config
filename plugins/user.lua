@@ -27,6 +27,48 @@ return {
   },
 
   {
+    "ray-x/material_plus.nvim",
+    lazy = true,
+  },
+
+  -- { "catppuccin/nvim",  name = "catppuccin", priority = 1000 },
+  -- catppuccin
+  {
+    "catppuccin/nvim",
+    lazy = false, -- true,
+    name = "catppuccin",
+    opts = {
+      integrations = {
+        alpha = true,
+        cmp = true,
+        gitsigns = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        lsp_trouble = true,
+        mini = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+        },
+        navic = { enabled = true },
+        neotest = true,
+        noice = true,
+        notify = true,
+        nvimtree = true,
+        semantic_tokens = true,
+        telescope = true,
+        treesitter = true,
+        which_key = true,
+      },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     mapping = {
       ["<C-o>"] = require("cmp").mapping(require("cmp").mapping.complete(), { "i", "c" }),
@@ -51,8 +93,8 @@ return {
   {
     "ggandor/leap.nvim",
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function(_, opts)
@@ -72,7 +114,7 @@ return {
     config = true,
     lazy = false,
     -- Uncomment next line if you want to follow only stable versions
-    -- version = "*" 
+    -- version = "*"
   },
 
   {
@@ -149,10 +191,11 @@ return {
             -- stylua: ignore
             {
               function() return "  " .. require("dap").status() end,
-              cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+              cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
               -- color = Util.fg("Debug"),
             },
-            { require("lazy.status").updates, cond = require("lazy.status").has_updates, --[[ color = Util.fg("Special") ]] },
+            { require("lazy.status").updates,
+              cond = require("lazy.status").has_updates, --[[ color = Util.fg("Special") ]] },
             "searchcount",
             "lsp_progress",
             {
@@ -165,7 +208,7 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
           },
           lualine_z = {
@@ -241,13 +284,26 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
+      { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end,                 mode = "c",
+                                                                                                                                    desc =
+        "Redirect Cmdline" },
+      { "<leader>snl", function() require("noice").cmd("last") end,                                   desc =
+      "Noice Last Message" },
+      { "<leader>snh", function() require("noice").cmd("history") end,                                desc =
+      "Noice History" },
+      { "<leader>sna", function() require("noice").cmd("all") end,                                    desc = "Noice All" },
+      { "<leader>snd", function() require("noice").cmd("dismiss") end,                                desc =
+      "Dismiss All" },
+      { "<c-f>",       function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,  silent = true,
+                                                                                                                                    expr = true,
+                                                                                                                                                              desc =
+        "Scroll forward",                                                                                                                                                             mode = {
+        "i", "n", "s" } },
+      { "<c-b>",       function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
+                                                                                                                                    expr = true,
+                                                                                                                                                              desc =
+        "Scroll backward",                                                                                                                                                            mode = {
+        "i", "n", "s" } },
     },
   },
 
@@ -291,7 +347,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
+      require "plugins.configs.luasnip" (plugin, opts)                                       -- include the default astronvim config that calls the setup call
       require("luasnip.loaders.from_vscode").lazy_load { paths = { "./lua/user/snippets" } } -- load snippets paths
     end,
   },
@@ -302,10 +358,10 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>",               desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix List (Trouble)" },
       {
         "[q",
         function()
@@ -336,4 +392,6 @@ return {
       },
     },
   },
+
+  {"christoomey/vim-tmux-navigator"},
 }

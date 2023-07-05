@@ -141,5 +141,9 @@ return {
       }
     end,
   },
+
+  {
+    "echasnovski/mini.animate", enabled = false,
+  },
 }
 
