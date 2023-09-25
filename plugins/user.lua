@@ -78,35 +78,35 @@ return {
   { "tpope/vim-repeat", event = "VeryLazy" },
 
   -- easily jump to any location and enhanced f/t motions for Leap
-  {
-    "ggandor/flit.nvim",
-    keys = function()
-      ---@type LazyKeys[]
-      local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
-        ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
-      end
-      return ret
-    end,
-    opts = { labeled_modes = "nx" },
-  },
-  {
-    "ggandor/leap.nvim",
-    keys = {
-      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
-      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
-    },
-    config = function(_, opts)
-      local leap = require("leap")
-      for k, v in pairs(opts) do
-        leap.opts[k] = v
-      end
-      leap.add_default_mappings(true)
-      vim.keymap.del({ "x", "o" }, "x")
-      vim.keymap.del({ "x", "o" }, "X")
-    end,
-  },
+  -- {
+  --   "ggandor/flit.nvim",
+  --   keys = function()
+  --     ---@type LazyKeys[]
+  --     local ret = {}
+  --     for _, key in ipairs { "f", "F", "t", "T" } do
+  --       ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+  --     end
+  --     return ret
+  --   end,
+  --   opts = { labeled_modes = "nx" },
+  -- },
+  -- {
+  --   "ggandor/leap.nvim",
+  --   keys = {
+  --     { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+  --     { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+  --     { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+  --   },
+  --   config = function(_, opts)
+  --     local leap = require "leap"
+  --     for k, v in pairs(opts) do
+  --       leap.opts[k] = v
+  --     end
+  --     leap.add_default_mappings(true)
+  --     vim.keymap.del({ "x", "o" }, "x")
+  --     vim.keymap.del({ "x", "o" }, "X")
+  --   end,
+  -- },
 
   {
     "danymat/neogen",
@@ -135,9 +135,8 @@ return {
     opts = function(_, opts)
       opts.statusline = nil
       return opts
-    end
+    end,
   },
-
 
   {
     "nvim-lualine/lualine.nvim",
@@ -194,8 +193,10 @@ return {
               cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
               -- color = Util.fg("Debug"),
             },
-            { require("lazy.status").updates,
-              cond = require("lazy.status").has_updates, --[[ color = Util.fg("Special") ]] },
+            {
+              require("lazy.status").updates,
+              cond = require("lazy.status").has_updates, --[[ color = Util.fg("Special") ]]
+            },
             "searchcount",
             "lsp_progress",
             {
@@ -208,7 +209,7 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+            { "progress", separator = " ", padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
           },
           lualine_z = {
@@ -321,9 +322,12 @@ return {
       require("illuminate").configure(opts)
 
       local function map(key, dir, buffer)
-        vim.keymap.set("n", key, function()
-          require("illuminate")["goto_" .. dir .. "_reference"](false)
-        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+        vim.keymap.set(
+          "n",
+          key,
+          function() require("illuminate")["goto_" .. dir .. "_reference"](false) end,
+          { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer }
+        )
       end
 
       map("]]", "next")
@@ -347,7 +351,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "plugins.configs.luasnip" (plugin, opts)                                       -- include the default astronvim config that calls the setup call
+      require "plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
       require("luasnip.loaders.from_vscode").lazy_load { paths = { "./lua/user/snippets" } } -- load snippets paths
     end,
   },
@@ -358,20 +362,18 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>",               desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix List (Trouble)" },
+      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
       {
         "[q",
         function()
           if require("trouble").is_open() then
-            require("trouble").previous({ skip_groups = true, jump = true })
+            require("trouble").previous { skip_groups = true, jump = true }
           else
             local ok, err = pcall(vim.cmd.cprev)
-            if not ok then
-              vim.notify(err, vim.log.levels.ERROR)
-            end
+            if not ok then vim.notify(err, vim.log.levels.ERROR) end
           end
         end,
         desc = "Previous trouble/quickfix item",
@@ -380,12 +382,10 @@ return {
         "]q",
         function()
           if require("trouble").is_open() then
-            require("trouble").next({ skip_groups = true, jump = true })
+            require("trouble").next { skip_groups = true, jump = true }
           else
             local ok, err = pcall(vim.cmd.cnext)
-            if not ok then
-              vim.notify(err, vim.log.levels.ERROR)
-            end
+            if not ok then vim.notify(err, vim.log.levels.ERROR) end
           end
         end,
         desc = "Next trouble/quickfix item",
@@ -393,5 +393,20 @@ return {
     },
   },
 
-  {"christoomey/vim-tmux-navigator"},
+  { "christoomey/vim-tmux-navigator" },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+        { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
+        { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+        { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
 }

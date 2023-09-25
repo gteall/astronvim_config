@@ -13,6 +13,7 @@ return {
     tabstop = 4,
     fencs = "utf-8,gb2312,gbk",
     cmdheight = 0,
+    cc = "120",
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

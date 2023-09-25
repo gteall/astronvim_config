@@ -49,6 +49,9 @@ return {
 
     ["<leader>sn"] = { "+noice" },
 
+    ["gh"] = {"<cmd>ClangdSwitchSourceHeader<cr>", desc = "switch s/h"},
+
+    -- ["<C-S-v>"] = {"<C-v>"},
   },
   t = {
     -- setting a mapping to false will disable it
