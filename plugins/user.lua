@@ -18,12 +18,12 @@ return {
 
   {
     "Mofiqul/dracula.nvim",
-    lazy = true,
+    lazy = false, -- true,
   },
 
   {
     "navarasu/onedark.nvim",
-    lazy = true,
+    lazy = false, -- true,
   },
 
   {

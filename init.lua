@@ -84,5 +84,8 @@ return {
     --   },
     -- }
     require("user.autocmds")
+    if vim.g.neovide then
+      require("user.neovide")
+    end
   end,
 }

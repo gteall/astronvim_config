@@ -11,9 +11,11 @@ return {
     list = true, -- 显示隐藏字符
     listchars = {space = '.', tab = '>~'}, -- 配置隐藏字符的显示方式
     tabstop = 4,
+    shiftwidth = 4,
     fencs = "utf-8,gb2312,gbk",
     cmdheight = 0,
     cc = "120",
+    cinoptions="g0,N-s",
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
