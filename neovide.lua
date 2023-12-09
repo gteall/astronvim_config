@@ -1,5 +1,6 @@
 
-vim.o.guifont = "JetBrainsMono Nerd Font:h14"
+vim.o.guifont = "JetBrainsMono Nerd Font:h16"
+vim.o.linespace = -3
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_refresh_rate_idle = 5
 
