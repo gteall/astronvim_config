@@ -263,7 +263,7 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    -- enabled = false,
+    enabled = false,
     opts = {
       lsp = {
         hover = {

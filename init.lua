@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "tokyonight",
+  colorscheme = "tokyonight-storm",
   -- colorscheme = "astrodark",
   -- colorscheme = "catppuccin-frappe",
 
